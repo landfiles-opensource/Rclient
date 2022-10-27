@@ -1,11 +1,12 @@
 Package: landfilesRclient
 Type: Package
-Title: What the Package Does (Title Case)
+Title: R API client for https://app.landfiles.com/
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: 
+    person("Xavier", "Delpuech", , "xavier.delpuech@vignevin.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7278-3209"))
+Maintainer: <xavier.delpuech@vignevin.com>
+Description: Provides functions to connect with your password and id to the LandFiles API, and then get data from LandFiles to R in data.frame type : groups, farms, observations... 
+License: `use_gpl3_license()`
 Encoding: UTF-8
 LazyData: true

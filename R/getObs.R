@@ -4,12 +4,20 @@ getObs <- function (group = "",
                     token = "",
                     startDate = "2022-01-01",
                     endDate = "2022-12-31") {
-  obs <- try(httr::GET(paste0("https://api.landfiles.fr/api/landfilesservice/v1/external/observations/groups/",group),
+  result <- try(httr::GET(paste0("https://api.landfiles.fr/api/landfilesservice/v1/external/observations/groups/",group),
                        query=list(startDate= startDate,
                                   endDate = endDate),
                        httr::content_type_json(),encode ="form",
                        httr::add_headers(Authorization = token)))
-  DFobs = jsonlite::fromJSON(rawToChar(obs$content))
+  if(result$status_code!=200)
+  {
+    stop(paste(httr::http_status(result)$message), call. = FALSE)
+  } else
+  {
+    print(httr::http_status(result)$message)
+  }
+
+  DFobs = jsonlite::fromJSON(rawToChar(result$content))
   obs <- tidyr::unnest(DFobs,cols = c(observations))
   obs <- tidyr::unnest(obs,cols=c(data))
   vecClass <- sapply(obs,class)
@@ -22,5 +30,5 @@ getObs <- function (group = "",
     }
   }
   obs$date <- as.POSIXct(obs$date/1000, origin="1970-01-01")
-  return(list(obs,labelCol))
+  return(list(obs=obs,label=labelCol))
 }

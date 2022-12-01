@@ -1,6 +1,8 @@
 #' this function returns a data.frame with all parcels in a group
+#'
 #' @param group a string id of the group, for intance "GR-96c6c34e-e884-483e-94af-6fabc055c4bd"
 #' @param token a string with the token from getToken function
+#'
 #' @return a data frame of all groups available with the token
 #' @import httr
 #' @importFrom jsonlite fromJSON

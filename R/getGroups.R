@@ -1,5 +1,7 @@
 #' this function returns a data.frame with all groups accessible with a given token
+#'
 #' @param token a string with the token from getToken function
+#'
 #' @return a data frame of all groups available with the token
 #' @import httr
 #' @importFrom jsonlite fromJSON

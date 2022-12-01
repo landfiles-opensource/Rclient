@@ -1,9 +1,16 @@
 #' get observations in a group
 #' get all observations between 2 dates made in a group
 #' return a list with 2 elements : a data frame of observations and the name of cols
+#'
+#' @param group a string id of the group, for intance "GR-96c6c34e-e884-483e-94af-6fabc055c4bd"
+#' @param token a string with the token from getToken function
+#' @param startDate a string with the start date in format YYYY-MM-DD
+#' @param endDate a string with the end date in format YYYY-MM-DD
+#'
 #' @import httr
 #' @importFrom jsonlite fromJSON
 #' @importFrom tidyr unnest
+#' @importFrom stats na.exclude
 
 getObs <- function (group = "",
                     token = "",
@@ -30,7 +37,7 @@ getObs <- function (group = "",
   for (i in 1:ncol(obs))
   {
     if(vecClass[i]=="data.frame") {
-      labelCol[i]<-na.exclude(unique(obs[[i]]$label))[1]
+      labelCol[i]<-stats::na.exclude(unique(obs[[i]]$label))[1]
       obs[,i] <- ifelse(obs[[i]]$type=="LIST"|obs[[i]]$type=="MULTILIST",obs[[i]]$valueLabel,obs[[i]]$value)
     }
   }

@@ -11,7 +11,7 @@
 #' @importFrom tidyr pivot_wider
 
 
-getPlot <- function(group="",
+getPlots <- function(group="",
                     token="") {
   parcelData <- dataType <- value <- valueLabel <- uuid <- dataLabel <- valueF <- NULL # to bound variable from result
   result <- try(httr::GET(paste0("https://api.landfiles.fr/api/landfilesservice/v1/external/parcels/groups/",group),

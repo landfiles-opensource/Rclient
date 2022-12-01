@@ -8,6 +8,7 @@
 #' @importFrom jsonlite fromJSON
 #' @import magrittr
 #' @importFrom dplyr mutate left_join
+#' @importFrom tidyr pivot_wider
 
 
 getPlot <- function(group="",
@@ -29,7 +30,7 @@ getPlot <- function(group="",
   DFprcls<-result_prcls$parcels[[1]]
   DF <- unnest(DFprcls[c('uuid','parcelData')],cols = c(parcelData)) %>%
     dplyr::mutate(valueF = ifelse(dataType=="NUMBER",value,valueLabel)) %>%
-    pivot_wider(id_cols=uuid,names_from=dataLabel,values_from=valueF) %>%
+    tidyr::pivot_wider(id_cols=uuid,names_from=dataLabel,values_from=valueF) %>%
     dplyr::left_join(DFprcls[1:6])
   return(DF)
 }

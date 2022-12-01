@@ -2,7 +2,7 @@
 title: "landfileRclient quick start guide"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{comment-utiliser-mon-package}
+  %\VignetteIndexEntry{landfileRclient quick start guide}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,26 +14,95 @@ knitr::opts_chunk$set(
 )
 ```
 
+This is a quick start guide for the landfilesRclient package. This package provides functions to connect with your password and id to the LandFiles API, and then import data from LandFiles directly to R through the API.
+
+# Setup 
+
 ```{r setup}
 library(landfilesRclient)
 ```
 
 # Functions
-## getToken
+
+All functions in the landfilesRclient send request to the landfiles API, and print a message ine the R console according to  the status of the request:
+
+- 200 : means the request has succeeded
+- 300 : means the request was reoriented elsewhere
+- 400 : means the request failed from your side (your fault)
+- 500 : means that the request failed from the server (not your fault)
+
+If the status is not 200, the function stops.
+
+## function getToken
 The function getToken() send a request to the landfiles API in order to retrieve a token. This function needs 3 arguments:
 
-- url : the url of the API, by default set to "https://api.landfiles.fr/api/authenticationservice/auth/oauth/token"
-- username : your username
-- password : your password
+- url : a string url of the API, by default set to "https://api.landfiles.fr/api/authenticationservice/auth/oauth/token"
+- username : a string with your username provided by Landfiles
+- password : a string with your password provided by Landfiles
 
 ```{r getToken example}
 #not run  getToken(username = "",password = "")
 
 ```
 
-If the connection is successful, this give you a token that could be reused to query data from the landfiles APIP. The function also print a message according to  the status of the request:
+If the connection is successful, this give you a token that could be reused to query data from the landfiles API. 
 
-- 200 and family: means the request has succeeded
-- 300 and family: means the request was reoriented elsewhere
-- 400 and family: means the request failed from your side (your fault)
-- 500 and family: means that the request failed from the server (not your fault)
+## function getGroups
+The function getGroups() send a request to the landfiles API in order to get back all groups available with the token submitted, according to the access permission of the user in Landfiles.
+This function has only one argument, the token :
+
+- token :  a string with the token from getToken function
+
+```{r getGroups example}
+#not run getGroups(token=token) 
+```
+
+The function return a data frame with the id, name and url of each group.
+
+## function getFarms
+The function getFarms() send a request to the landfiles API in order to get back all farms registered in a given group.
+This function has two arguments  :
+
+- token :  a string with the token from getToken function
+- group : the id of the group, for instance "GR-96c6c34e-e884-483e-94af-6fabc055c4bd"
+
+```{r getFarms example}
+#not run farms <- getFarms(group = "GR-96c6c34e-e884-483e-94af-6fabc055c4bd",
+#                  token = token)
+```
+
+The function return a data frame with the id, name and url, description, town, postalCode, country and coordinates (latitude,longitude WGS84) of each farm.
+
+## function getPlots
+The function getPlots() send a request to the landfiles API in order to get back all plots registered in a given group.
+This function has two arguments  :
+
+- token :  a string with the token from getToken function
+- group : the id of the group, for instance "GR-96c6c34e-e884-483e-94af-6fabc055c4bd"
+
+```{r getPlots}
+#not run plots <- getPlots(group = "GR-96c6c34e-e884-483e-94af-6fabc055c4bd",
+#        token = token)
+```
+
+The function return a data frame with the id (uuid), metadata and coordinates (latitude and longitude WGS84) of each plot.
+
+## function getObs
+The function getObs() send a request to the landfiles API in order to get back all plots registered in a given group.
+This function has two arguments  :
+
+- token :  a string with the token from getToken function
+- group : the id of the group, for instance "GR-96c6c34e-e884-483e-94af-6fabc055c4bd"
+- startDate : a string with the start date of observations in format YYYY-MM-DD, by default "2022-01-01"
+- endDate : a string with the end date of observations in format YYYY-MM-DD, by default "2022-12-31"
+
+```{r getObs}
+#not run obs <- getObs(group = "GR-96c6c34e-e884-483e-94af-6fabc055c4bd",
+#              token = token)
+```
+
+The function return a list with two elements :
+
+- a data frame with the observations 
+- a vector of the names of columns of the data frame.
+

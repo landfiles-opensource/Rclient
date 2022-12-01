@@ -16,6 +16,7 @@ getObs <- function (group = "",
                     token = "",
                     startDate = "2022-01-01",
                     endDate = "2022-12-31") {
+  observations <- data <- NULL # to bound variable from result
   result <- try(httr::GET(paste0("https://api.landfiles.fr/api/landfilesservice/v1/external/observations/groups/",group),
                        query=list(startDate= startDate,
                                   endDate = endDate),

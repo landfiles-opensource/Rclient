@@ -7,7 +7,6 @@ Authors@R:
            comment = c(ORCID = "0000-0001-7278-3209"))
 Maintainer: <xavier.delpuech@vignevin.com>
 Description: Provides functions to connect with your password and id to the LandFiles API, and then get data from LandFiles to R in data.frame type : groups, farms, observations... 
-License: `use_gpl3_license()`
 Encoding: UTF-8
 LazyData: true
 Suggests: 
@@ -22,3 +21,4 @@ Imports:
     stats,
     tidyr
 RoxygenNote: 7.2.1
+License: LGPL (>= 3)

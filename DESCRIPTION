@@ -10,3 +10,11 @@ Description: Provides functions to connect with your password and id to the Land
 License: `use_gpl3_license()`
 Encoding: UTF-8
 LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Imports: 
+    dplyr,
+    httr,
+    jsonlite

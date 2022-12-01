@@ -1,5 +1,13 @@
-# this function returns a token after authentication to landfiles API
-#
+#' this function returns a token after authentication to landfiles API
+#' @param url is a string with the url of the API, by default https://api.landfiles.fr/api/authenticationservice/auth/oauth/token
+#' @param username is a string
+#' @param password is a string
+#' @return if the request is succesful the function returns a string token
+#' @import httr
+#' @importFrom jsonlite fromJSON
+#' @importFrom tidyr unnest
+
+
 getToken <- function(url="https://api.landfiles.fr/api/authenticationservice/auth/oauth/token",
                               username="",
                               password="") {

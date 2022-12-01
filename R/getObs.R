@@ -1,4 +1,9 @@
-########### get observations in a group
+#' get observations in a group
+#' get all observations between 2 dates made in a group
+#' return a list with 2 elements : a data frame of observations and the name of cols
+#' @import httr
+#' @importFrom jsonlite fromJSON
+#' @importFrom tidyr unnest
 
 getObs <- function (group = "",
                     token = "",

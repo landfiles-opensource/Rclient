@@ -17,4 +17,5 @@ VignetteBuilder: knitr
 Imports: 
     dplyr,
     httr,
-    jsonlite
+    jsonlite,
+    magrittr

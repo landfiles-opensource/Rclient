@@ -1,4 +1,12 @@
-# this fonction returns a data.frame with all parcels in a group
+#' this function returns a data.frame with all parcels in a group
+#' @param group a string id of the group, for intance "GR-96c6c34e-e884-483e-94af-6fabc055c4bd"
+#' @param token a string with the token from getToken function
+#' @return a data frame of all groups available with the token
+#' @import httr
+#' @importFrom jsonlite fromJSON
+#' @import magrittr
+#' @importFrom dplyr mutate left_join
+
 
 getPlot <- function(group="",
                     token="") {
@@ -17,7 +25,6 @@ getPlot <- function(group="",
 
   result_prcls = jsonlite::fromJSON(rawToChar(result$content))
   DFprcls<-result_prcls$parcels[[1]]
-  library(tidyr)
   DF <- unnest(DFprcls[c('uuid','parcelData')],cols = c(parcelData)) %>%
     dplyr::mutate(valueF = ifelse(dataType=="NUMBER",value,valueLabel)) %>%
     pivot_wider(id_cols=uuid,names_from=dataLabel,values_from=valueF) %>%

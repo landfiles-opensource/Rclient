@@ -27,8 +27,7 @@ The function getToken() send a request to the landfiles API in order to retrieve
 - password : your password
 
 ```{r getToken example}
-token <- getToken(username = "",
-                           password = "")
+#not run  getToken(username = "",password = "")
 
 ```
 

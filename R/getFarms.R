@@ -6,6 +6,7 @@
 #' @return a data frame of all farms in the group
 #' @import httr
 #' @importFrom jsonlite fromJSON
+#' @export
 
 getFarms <- function (group="",
                       token="") {

@@ -8,6 +8,7 @@
 #' @import httr
 #' @importFrom jsonlite fromJSON
 #' @importFrom tidyr unnest
+#' @export
 
 
 getToken <- function(url="https://api.landfiles.fr/api/authenticationservice/auth/oauth/token",

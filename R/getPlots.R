@@ -9,6 +9,7 @@
 #' @import magrittr
 #' @importFrom dplyr mutate left_join
 #' @importFrom tidyr pivot_wider
+#' @export
 
 
 getPlots <- function(group="",

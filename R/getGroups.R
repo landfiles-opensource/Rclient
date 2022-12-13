@@ -5,6 +5,7 @@
 #' @return a data frame of all groups available with the token
 #' @import httr
 #' @importFrom jsonlite fromJSON
+#' @export
 
 getGroups <- function (token="") {
   result <- try(httr::GET(paste0("https://api.landfiles.fr/api/landfilesservice/v1/external/groups"),

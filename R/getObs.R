@@ -11,6 +11,7 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom tidyr unnest
 #' @importFrom stats na.exclude
+#' @export
 
 getObs <- function (group = "",
                     token = "",

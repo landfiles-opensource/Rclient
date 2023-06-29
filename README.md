@@ -1,22 +1,19 @@
 # landfilesRclient
 
-Basic functions to access Landfiles API from R.
-This R package was developped as part of the OPERA project 2021-2023 (France), with the support of the French Ministry of Agriculture and Food, and the financial contribution of the special allocation account for agricultural and rural development (CASDAR). 
-The responsability of the French Ministry of Agriculture and Food cannot be engaged. 
-
+Basic functions to access [Landfiles](https://landfiles.com/)API from R. This R package was developped as part of the OPERA project 2021-2023 (France), with the support of the French Ministry of Agriculture and Food, and the financial contribution of the special allocation account for agricultural and rural development (CASDAR). The responsability of the French Ministry of Agriculture and Food cannot be engaged.
 
 ## Installation
 
 To install the latest version of landfilesRclient
 
-```
+```         
 library(remotes)
 install_github("landfiles-opensource/Rclient")
 ```
 
 ## Example of use
 
-```
+```         
 library(landfilesRclient)
 
 ## to get a token from the Landfiles API
